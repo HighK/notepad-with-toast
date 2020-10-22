@@ -1,17 +1,31 @@
 import React from "react";
 import EditMemo from "../EditMemo";
 import ViewMemo from "../ViewMemo";
+import Header from "../Header";
 import * as S from "./style";
+import { Switch, Route } from "react-router-dom";
+import MemoList from "../MemoList";
 
 const Layout: React.FC = () => {
   return (
     <S.Warpper>
-      <S.HeaderWrapper></S.HeaderWrapper>
+      <Header />
       <S.MainWrapper>
-        <S.LestSideWarpper></S.LestSideWarpper>
+        <S.LestSideWarpper>
+          <MemoList />
+        </S.LestSideWarpper>
         <S.ContentsWarpper>
-          {/* <EditMemo /> */}
-          <ViewMemo />
+          <Switch>
+            <Route path="/new">
+              <EditMemo />
+            </Route>
+            <Route path="/:id/edit">
+              <EditMemo />
+            </Route>
+            <Route path="/:id" exact>
+              <ViewMemo />
+            </Route>
+          </Switch>
         </S.ContentsWarpper>
       </S.MainWrapper>
     </S.Warpper>
