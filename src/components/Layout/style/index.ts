@@ -6,14 +6,9 @@ export const MainWrapper = styled.div`
   width: 100%;
   height: 100%;
   max-width: 1600px;
+  background: #eee;
 `;
 
-export const HeaderWrapper = styled.div`
-  height: 70px;
-  width: 100%;
-  background: #EEE;
-  margin-bottom: 20px;
-`;
 
 export const Warpper= styled.div`
   height: 100%;
@@ -25,13 +20,14 @@ export const Warpper= styled.div`
 
 export const LestSideWarpper = styled.div`
   width: 300px;
+  min-height: 600px; 
   background: #DDD;
   margin-right: 20px;
 `;
 
 export const ContentsWarpper = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 600px; 
   max-width: 1280px;
-  border: 1px solid black;
+  background: white;
 `;

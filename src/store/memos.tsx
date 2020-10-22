@@ -1,11 +1,5 @@
 import React, { useState, createContext, Dispatch } from "react";
-
-export type Memo = {
-  title: string;
-  body: string;
-  createdAt: string;
-  ModifiedAt: String;
-};
+import { Memo } from "./memo";
 
 export const MemosState = createContext<Memo[]>([]);
 export const MemosAction = createContext<Dispatch<Memo[]>>(() => {});
