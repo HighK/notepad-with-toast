@@ -1,14 +1,13 @@
 import React from "react";
-import "./App.css";
-import TUIEditor from "./TUIEditorWrapper";
+
+import Layout from "./components/Layout";
+import Store from "./store";
 
 function App() {
   return (
-    <div>
-      <header>
-        <TUIEditor />
-      </header>
-    </div>
+    <Store>
+      <Layout></Layout>
+    </Store>
   );
 }
 
