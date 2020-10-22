@@ -1,7 +1,6 @@
 import React, { useState, createContext, Dispatch } from "react";
 
 export type Memo = {
-  id: number;
   title: string;
   body: string;
   createdAt: string;
@@ -10,7 +9,6 @@ export type Memo = {
 };
 
 export const initMemo = () => ({
-  id: 0,
   title: "",
   body: "",
   createdAt: "",

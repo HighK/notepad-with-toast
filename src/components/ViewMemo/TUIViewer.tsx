@@ -1,23 +1,38 @@
-import React, { useRef, useEffect } from "react";
-import { EditorProps, Viewer } from "@toast-ui/react-editor";
+import React, { useRef, useCallback } from "react";
+import { Editor, EditorProps, Viewer } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "codemirror/lib/codemirror.css";
 
 interface Props extends EditorProps {
-  value: string;
+  onChange(value: string): void;
+  setImage?(imgUrl: string): void;
+  valueType?: "markdown" | "html";
 }
 
 const TUIEditor = (props: Props) => {
-  const { value } = props;
+  const {
+    initialValue,
+    previewStyle,
+    height,
+    initialEditType,
+    useCommandShortcut,
+  } = props;
 
-  // const createMarkup = () => {
-  //   return { __html: value };
-  // };
+  const editorRef = useRef<Editor>();
 
-  useEffect(() => {}, [value]);
+  const handleChange = useCallback(() => {
+    if (!editorRef.current) {
+      return;
+    }
+    const instance = editorRef.current.getInstance();
+    const valueType = props.valueType || "markdown";
 
-  // return <div dangerouslySetInnerHTML={createMarkup()}></div>;
-  return <Viewer initialValue={value} />;
+    props.onChange(
+      valueType === "markdown" ? instance.getMarkdown() : instance.getHtml()
+    );
+  }, [props, editorRef]);
+
+  return <Viewer initialValue="ASDSAD" />;
 };
 
 export default TUIEditor;
