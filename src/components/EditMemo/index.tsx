@@ -40,21 +40,22 @@ const EditMemo: React.FC = () => {
   }, [history, memos, id, setMemo, memo.body]);
 
   const handleSaveMemo = () => {
+    const newMemos = [...memos];
+
     if (!id) {
-      setMemos(
-        memos.concat({
-          ...memo,
-          body,
-          id: memos.length + 1,
-          createdAt: Date(),
-          ModifiedAt: Date(),
-        })
-      );
+      newMemos.unshift({
+        ...memo,
+        body,
+        id: memos.length + 1,
+        createdAt: Date(),
+        ModifiedAt: Date(),
+      });
+      setMemos(newMemos);
 
       history.push("/");
     } else {
       const index = memos.findIndex((item) => item.id === Number(id));
-      const newMemos = [...memos];
+
       newMemos.splice(index, 1);
       newMemos.unshift({ ...memo, body, ModifiedAt: Date() });
       setMemos(newMemos);

@@ -1,13 +1,13 @@
-import React from "react";
-
+import React, { useState } from "react";
 import Layout from "./components/Layout";
 import Store from "./store";
+import LoginPage from "./pages/Login";
 
 function App() {
+  const [isLogin, setLogin] = useState(false);
+
   return (
-    <Store>
-      <Layout></Layout>
-    </Store>
+    <Store>{!isLogin ? <LoginPage onLogin={setLogin} /> : <Layout />}</Store>
   );
 }
 
