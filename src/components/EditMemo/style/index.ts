@@ -7,19 +7,20 @@ export const ButtonWrapper  = styled.div`
   align-items: center;
 
 
-  > button {
-    background: #eee;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 5px 20px;
-    font-size: 16px;
-    &:first-child {
+  > button:first-child {
     margin-left: 20px;
   }
-  }
+`
+export const TitleInput = styled.input`
+  width: 80%;
+  margin: 0 20px;
+  font-size: 24px;
+  font-weight: 700;
+  border: none;
+  border-bottom: 1px solid black;
+  height: 40px;
 
-  .deleteBtn {
-    background: #ff7070;
-    color: white;
+  &:focus {
+    outline: none;
   }
 `

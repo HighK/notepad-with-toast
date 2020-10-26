@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { EditorProps, Viewer } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "codemirror/lib/codemirror.css";
@@ -10,14 +10,20 @@ interface Props extends EditorProps {
 const TUIEditor = (props: Props) => {
   const { value } = props;
 
-  // const createMarkup = () => {
-  //   return { __html: value };
-  // };
+  const viewerRef = useRef<Viewer>();
 
-  useEffect(() => {}, [value]);
+  useEffect(() => {
+    if (viewerRef.current) {
+      viewerRef.current.getInstance().setMarkdown(value);
+    }
+  }, [value]);
 
-  // return <div dangerouslySetInnerHTML={createMarkup()}></div>;
-  return <Viewer initialValue={value} />;
+  return (
+    <Viewer
+      initialValue={value}
+      ref={viewerRef as React.MutableRefObject<Viewer>}
+    />
+  );
 };
 
 export default TUIEditor;

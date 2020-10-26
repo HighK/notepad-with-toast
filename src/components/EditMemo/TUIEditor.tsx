@@ -1,10 +1,11 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef, useEffect } from "react";
 import { Editor, EditorProps } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "codemirror/lib/codemirror.css";
 
 interface Props extends EditorProps {
   onChange(value: string): void;
+  update: string;
   setImage?(imgUrl: string): void;
   valueType?: "markdown" | "html";
 }
@@ -16,30 +17,32 @@ const TUIEditor = (props: Props) => {
     height,
     initialEditType,
     useCommandShortcut,
+    onChange,
+    update,
   } = props;
 
   const editorRef = useRef<Editor>();
 
-  const handleChange = useCallback(() => {
-    if (!editorRef.current) {
-      return;
+  const handleChange = () => {
+    if (editorRef.current) {
+      onChange(editorRef.current.getInstance().getMarkdown());
     }
-    const instance = editorRef.current.getInstance();
-    const valueType = props.valueType || "markdown";
+  };
 
-    props.onChange(
-      // valueType === "markdown" ? instance.getMarkdown() : instance.getHtml()
-      instance.getHtml()
-    );
-  }, [props, editorRef]);
+  useEffect(() => {
+    if (update === "") {
+      if (editorRef.current) editorRef.current.getInstance().setMarkdown("");
+    }
+  }, [update]);
 
   return (
     <Editor
+      usageStatistics={false}
       initialValue={initialValue || "hello react editor world!"}
       previewStyle={previewStyle || "vertical"}
       height={height || "600px"}
       initialEditType={initialEditType || "markdown"}
-      useCommandShortcut={useCommandShortcut || false}
+      useCommandShortcut={useCommandShortcut || true}
       events={{
         change: handleChange,
       }}

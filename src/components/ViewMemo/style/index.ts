@@ -7,25 +7,18 @@ export const ButtonWrapper  = styled.div`
   align-items: center;
 
 
-  > button {
-    background: #eee;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 5px 20px;
-    font-size: 16px;
-    &:first-child {
+  > button:first-child {
     margin-left: 20px;
-  }
-  }
-
-  .deleteBtn {
-    background: #ff7070;
-    color: white;
   }
 `
 
 export const ViewContents = styled.div`
   height: 600px;
   padding: 20px;
+  > input {
+    width: 100%;
+    border: none;
+    border-bottom: 1x solid black;
+  }
 `
 

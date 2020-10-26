@@ -19,7 +19,7 @@ const Layout: React.FC = () => {
             <Route path="/new">
               <EditMemo />
             </Route>
-            <Route path="/:id/edit">
+            <Route path="/edit/:id">
               <EditMemo />
             </Route>
             <Route path="/:id" exact>

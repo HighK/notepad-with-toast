@@ -6,7 +6,6 @@ export type Memo = {
   body: string;
   createdAt: string;
   ModifiedAt: string;
-  isActive: boolean;
 };
 
 export const initMemo = () => ({
@@ -15,7 +14,6 @@ export const initMemo = () => ({
   body: "",
   createdAt: "",
   ModifiedAt: "",
-  isActive: false,
 });
 
 export const MemoState = createContext<Memo>(initMemo());
